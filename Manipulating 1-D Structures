@@ -1,0 +1,69 @@
+b1 = B(:,1);
+b2 = B(:,3);
+b = cat(2,b1,b2);
+bb = sum(b,2);
+bb(bb == 2) = 1;
+aa = 0;
+AA = cat(2,aa,bb',aa);
+
+// new row with zero padding (each end).
+
+for i = 1:1:6
+	B(i,:) = AA(:,i:i+2);
+end
+
+b1 = B(:,1);
+b2 = B(:,3);
+b = cat(2,b1,b2);
+bb = sum(b,2);
+bb(bb == 2) = 1;
+aa = 0;
+AAA = cat(2,aa,bb',aa);
+
+// creates a repeatable pattern with initial condition (first row) different.
+
+
+A = [0,1,0,1,0,1,0,1];
+
+// initial condition.
+
+for i = 1:1:6
+	B(i,:) = A(:,i:i+2);
+end
+
+aa1 = A(:,5:6);
+aa2 = A(:,1);
+aa1 = cat(2,aa1,aa2);
+aa2 = A(:,6);
+aa3 = A(:,1:2);
+aa2 = cat(2,aa2,aa3);
+B = cat(1,aa1,B,aa2);
+b1 = B(:,1);
+b2 = B(:,3);
+b = cat(2,b1,b2);
+bb = sum(b,2);
+bb(bb == 2) = 1;
+
+AA = bb';
+
+// creates a convergence to all 1s with initial condition (first row) different.
+
+
+A = [0,1,0,1,0,1,0,1];
+
+// initial condition.
+
+for i = 1:1:6
+	B(i,:) = A(:,i:i+2);
+end
+
+b1 = B(:,1);
+b2 = B(:,3);
+b = cat(2,b1,b2);
+bb = sum(b,2);
+bb(bb == 2) = 1;
+aa1 = sample(1,A);
+aa2 = sample(1,A);
+AA = cat(2,aa1,bb',aa2);
+
+// new row with copying-mutator rule (random assortment at each end).
