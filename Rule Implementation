@@ -1,0 +1,20 @@
+I = [0,1,0,1,0,1,0,1]; // initial condition (vector).
+i = 1:(length(I)-2);
+
+for i = 1:(length(I)-2) // for non-toroidal lattices.
+	U(:.1) = I(:,i:i+2); // generates all neighborhoods in I.
+end
+
+U1 = cat(2, I(:,length(I)-1:length(A), A(:,1)); // extract edge neighborhoods.
+U2 = cat(2, A(:,length(A)), A(:,1:2));
+U = cat(1,U1, U, U2);
+
+u = U(:,1); // extract two neighbors in a 1-D neighborhood.
+v = U(:,3);
+
+i = 1:(length(I)-2);
+
+for i = 1:(length(I)-2);
+	V(:,i) = bitxor(u(:,i)v(:,i)); // application of interaction rule to neighbor pairs.
+end
+V = V';
